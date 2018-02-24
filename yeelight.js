@@ -20,7 +20,6 @@ var Yeelight = function(bulb, container) {
             .change(function() {
               $(this).prop('checked') ? that.turnOn() : that.turnOff();
             });
-            console.log(this.toggle);
   $('<div class="colorpicker"></div>').appendTo(this.container).colorpicker({
         color: (parseInt(bulb.rgb).toString(16)),
         container: true,
