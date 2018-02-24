@@ -15,6 +15,10 @@ ul.nav-tabs li a {
   font-weight: bold;
 }
 
+.colorpicker {
+  text-align: center;
+}
+
 .colorpicker .colorpicker-saturation {
     width: 320px; height: 320px;
 }
@@ -34,5 +38,5 @@ ul.nav-tabs li a {
 
 .status {
   text-align: center;
-  font-size: 2em;
+  font-size: 1.2em;
 }
