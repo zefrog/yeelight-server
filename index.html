@@ -1,45 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Yeelight</title>
-        <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="bootstrap-colorpicker-master/dist/css/bootstrap-colorpicker.min.css">
-        <link rel="stylesheet" href="bootstrap-toggle-master/css/bootstrap-toggle.min.css">
-        <link rel="stylesheet" href="style.css">
+  <head>
+    <title>Yeelight</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="bootstrap-colorpicker-master/dist/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="bootstrap-toggle-master/css/bootstrap-toggle.min.css">
+    <link rel="stylesheet" href="style.css">
 
-        <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
 
-        <script src="jquery-3.1.1.min.js"></script>
-        <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-        <script src="bootstrap-colorpicker-master/dist/js/bootstrap-colorpicker.min.js"></script>
-        <script src="bootstrap-toggle-master/js/bootstrap-toggle.min.js"></script>
-        <script src="yeelight.js"></script>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap-colorpicker-master/dist/js/bootstrap-colorpicker.min.js"></script>
+    <script src="bootstrap-toggle-master/js/bootstrap-toggle.min.js"></script>
+    <script src="yeelight.js"></script>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="container">
+          <ul id="tablist" class="nav nav-tabs" role="tablist">
+            <!-- dummy place for nav tabs -->
+          </ul>
 
-    </head>
-    <body>
-<div class="container">
-      <ul id="tablist" class="nav nav-tabs" role="tablist">
-        <!--<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>-->
-      </ul>
-
-      <div class="tab-content" id="tabcontent">
-<!--        <div role="tabpanel" class="tab-pane active" id="home">
-
-        </div>-->
-
-      </div>
-</div>
-<!--
-      <h1 id="title"></h1>
-    <div id="commands">
-        <input checked data-toggle="toggle" type="checkbox" data-width="200" data-height="75">
+          <div class="tab-content" id="tabcontent">
+            <!-- dummy place for tabs -->
+          </div>
     </div>
-    <div id="cp7" class="inl-bl"></div>
-    <p id="status"></p>-->
-
 
     <script>
         // main init, discover and launch yeelight app
@@ -55,16 +43,16 @@
               }
               data.sort(sortByName);
 
+              // create tab and init yeelight controller
               $(data).each(function(i, bulb) {
                 $('<li role="presentation"><a href="#'+bulb.name+'" aria-controls="'+bulb.name+'" role="tab" data-toggle="tab">'+bulb.name+'</a></li>').appendTo($('#tablist'));
                 var container = $('<div role="tabpanel" class="tab-pane" id="'+bulb.name+'"></div>').appendTo($('#tabcontent'));
                 new Yeelight(bulb, container);
               });
 
-
+              // activate first tab
               $('#tablist li:first').addClass('active');
               $('#tabcontent div:first').addClass('active');
-//              $('#Lucie').tab('show');
             },
             error: function() {
               $('<h1 class="title error"></h1>').text("Error : No yeelight bulb found").appendTo($('body'));
@@ -73,5 +61,5 @@
 
         });
     </script>
-    </body>
+  </body>
 </html>

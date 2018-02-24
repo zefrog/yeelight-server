@@ -17,21 +17,20 @@
     socket_set_option($sock, SOL_SOCKET, SO_RCVTIMEO, array("sec"=> 0, "usec" => $config['usec_wait']));
     $bulbs = array();
     $sources = array();
+    // let's look for bulbs
     do {
         $len = 1023 ;
         $flags = 0 ;
         $recvStr = "";
         $from = "" ;
-    //    socket_set_option($sock,IPPROTO_IP,MCAST_JOIN_GROUP,$grpparms);
+
         $res = socket_recvfrom($sock, $recvStr, $len, $flags, $from, $config['multicast_port']);
-//        echo "Received " . $recvStr . " from " . $from ."\n";
         $lines = explode("\r\n", $recvStr);
         if (count($lines) > 0 && $lines[0] === "HTTP/1.1 200 OK") {
             unset($lines[0]);
             $headers = array();
             foreach($lines as $line) {
                 if (empty($line)) continue;
-//                echo strlen($line). ' ' .$line . "\n";
                 list ($key, $value) = explode(': ', $line);
                 $headers[$key] = $value;
             }
@@ -43,6 +42,7 @@
         }
     } while(false !== $res);
 
+    // send 404 if no yeelight found
     if (count($bulbs) === 0) {
         http_response_code(404);
     } else {
